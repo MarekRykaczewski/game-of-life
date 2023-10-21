@@ -1,7 +1,7 @@
 import random
 
 def dead_state(width, height):
-  arr = [[0]*width]*height
+  arr = [[0 for _ in range(width)] for _ in range(height)]
   return arr
 
 def random_state(width, height):
