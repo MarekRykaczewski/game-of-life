@@ -1,4 +1,4 @@
-from game_of_life import dead_state, random_state, render
+from game_of_life import dead_state, get_neighbours, random_state, render
 
 def test_dead_state():
     width, height = 5, 5
@@ -21,6 +21,16 @@ def test_random_state():
     assert all(len(row) == height for row in result)
     # All cells in the result are either 0 or 1 (random state)
     assert all(cell in [0, 1] for row in result for cell in row)
+
+def test_neighbours():
+    state = [
+        [1, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0]
+    ]
+
+    position = (0, 1)
+    assert list(get_neighbours(position, state)) == [1, 1, 1, 1, 1]
 
 def test_render(capsys):
     state = [
