@@ -5,9 +5,9 @@ def dead_state(width, height):
   return arr
 
 def random_state(width, height):
-  state = dead_state(width, height)
-
-  for i in range(width):
-    for j in range(height):
-      state[i][j] = random.randint(0, 1)
-  return state
+    state = dead_state(width, height)
+    
+    for i in range(height):
+        state[i] = [random.randint(0, 1) for _ in range(width)]
+    
+    return state
