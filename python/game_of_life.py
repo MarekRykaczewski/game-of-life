@@ -11,3 +11,7 @@ def random_state(width, height):
         state[i] = [random.randint(0, 1) for _ in range(width)]
     
     return state
+
+def render(state):
+  for row in state:
+      print(' '.join(['X' if cell else 'O' for cell in row]))

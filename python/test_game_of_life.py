@@ -1,4 +1,4 @@
-from game_of_life import dead_state, random_state
+from game_of_life import dead_state, random_state, render
 
 def test_dead_state():
     width, height = 5, 5
@@ -21,3 +21,17 @@ def test_random_state():
     assert all(len(row) == height for row in result)
     # All cells in the result are either 0 or 1 (random state)
     assert all(cell in [0, 1] for row in result for cell in row)
+
+def test_render(capsys):
+    state = [
+        [1, 0, 1],
+        [0, 1, 0],
+        [1, 0, 1]
+    ]
+
+    render(state)
+
+    captured = capsys.readouterr()
+    expected_output = "X O X\nO X O\nX O X\n"
+
+    assert captured.out == expected_output
