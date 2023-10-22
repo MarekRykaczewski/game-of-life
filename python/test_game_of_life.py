@@ -30,6 +30,7 @@ def test_neighbours():
     ]
 
     position = (0, 1)
+    # Lists all neighbours of cell at position
     assert list(get_neighbours(position, state)) == [1, 1, 1, 1, 1]
 
 def test_next_state():
