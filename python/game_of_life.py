@@ -1,4 +1,6 @@
+import os
 import random
+import time
 
 def dead_state(width, height):
   arr = [[0 for _ in range(width)] for _ in range(height)]
@@ -44,3 +46,16 @@ def next_state(state):
                 new_state[i][j] = state[i][j]
 
     return new_state
+
+def run_game(initial_state, num_gen, delay):
+    current_state = initial_state
+
+    for gen in range(num_gen):
+
+        os.system('clear')
+
+        render(current_state)
+
+        current_state = next_state(current_state)
+
+        time.sleep(delay)
