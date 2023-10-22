@@ -25,7 +25,7 @@ def get_neighbours(pos, state):
       
 def render(state):
   for row in state:
-      print(' '.join(['X' if cell else 'O' for cell in row]))
+      print(''.join(['🟨' if cell else '⬜' for cell in row]))
 
 def next_state(state):
     rows = len(state)
