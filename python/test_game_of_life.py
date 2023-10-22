@@ -50,6 +50,7 @@ def test_next_state():
     assert next_state(input_state) == expected_output
 
 def test_render(capsys):
+    # Renders when height and width are the same
     state = [
         [1, 0, 1],
         [0, 1, 0],
@@ -60,5 +61,19 @@ def test_render(capsys):
 
     captured = capsys.readouterr()
     expected_output = "X O X\nO X O\nX O X\n"
+
+    assert captured.out == expected_output
+
+    # Renders when height and width are different
+    state = [
+        [1, 0, 1, 0],
+        [0, 1, 0, 1],
+        [1, 0, 1, 0]
+    ]
+
+    render(state)
+
+    captured = capsys.readouterr()
+    expected_output = "X O X O\nO X O X\nX O X O\n"
 
     assert captured.out == expected_output
