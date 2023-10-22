@@ -1,4 +1,4 @@
-from game_of_life import dead_state, get_neighbours, random_state, render
+from game_of_life import dead_state, next_state, get_neighbours, random_state, render
 
 def test_dead_state():
     width, height = 5, 5
@@ -31,6 +31,22 @@ def test_neighbours():
 
     position = (0, 1)
     assert list(get_neighbours(position, state)) == [1, 1, 1, 1, 1]
+
+def test_next_state():
+    # Empty grid remains empty
+    input_state = dead_state(3, 3)
+    expected_output = dead_state(3, 3)
+    assert next_state(input_state) == expected_output
+
+    # Cell should die (underpopulation)
+    input_state = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+    expected_output = dead_state(3, 3)
+    assert next_state(input_state) == expected_output
+
+    # Blinker (periodic oscillation)
+    input_state = [[0, 1, 0], [0, 1, 0], [0, 1, 0]]
+    expected_output = [[0, 0, 0], [1, 1, 1], [0, 0, 0]]
+    assert next_state(input_state) == expected_output
 
 def test_render(capsys):
     state = [
