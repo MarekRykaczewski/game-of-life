@@ -24,3 +24,23 @@ def get_neighbours(pos, state):
 def render(state):
   for row in state:
       print(' '.join(['X' if cell else 'O' for cell in row]))
+
+def next_state(state):
+    rows = len(state)
+    cols = len(state[0]) if rows else 0
+    new_state = dead_state(rows, cols)
+    for i in range(rows):
+        for j in range(cols):
+            neighbors = get_neighbours((i, j), state)
+            live_neighbors = sum(neighbors)
+
+            if live_neighbors <= 1:
+                new_state[i][j] = 0
+            elif live_neighbors > 3:
+                new_state[i][j] = 0
+            elif live_neighbors == 3:
+                new_state[i][j] = 1
+            else:
+                new_state[i][j] = state[i][j]
+
+    return new_state
