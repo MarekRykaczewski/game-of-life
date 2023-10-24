@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import argparse
 
 def dead_state(width, height):
   arr = [[0 for _ in range(width)] for _ in range(height)]
@@ -59,3 +60,9 @@ def run_game(initial_state, num_gen, delay):
         current_state = next_state(current_state)
 
         time.sleep(delay)
+
+def load_state_from_file(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        state = [[int(cell) for cell in line.strip()] for line in lines]
+    return state
