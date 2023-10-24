@@ -1,4 +1,5 @@
-from game_of_life import dead_state, next_state, get_neighbours, random_state, render
+import os
+from game_of_life import dead_state, next_state, get_neighbours, random_state, load_state_from_file, render
 
 def test_dead_state():
     width, height = 5, 5
@@ -61,3 +62,26 @@ def test_render():
     render(state)
 
     assert state == expected_output
+
+def test_load_state_from_file():
+    # Create a temporary test file with a known content
+    with open('test_initial_state.txt', 'w') as test_file:
+        test_file.write("01010\n00100\n11111\n00100\n01010\n")
+
+    # Call the function to load the state from the test file
+    state = load_state_from_file('test_initial_state.txt')
+
+    # Define the expected state based on the content of the test file
+    expected_state = [
+        [0, 1, 0, 1, 0],
+        [0, 0, 1, 0, 0],
+        [1, 1, 1, 1, 1],
+        [0, 0, 1, 0, 0],
+        [0, 1, 0, 1, 0]
+    ]
+
+    # Loaded state matches the expected state
+    assert state == expected_state
+
+    # Clean up the test file
+    os.remove('test_initial_state.txt')
