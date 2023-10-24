@@ -66,3 +66,23 @@ def load_state_from_file(file_path):
         lines = file.readlines()
         state = [[int(cell) for cell in line.strip()] for line in lines]
     return state
+
+def main():
+    parser = argparse.ArgumentParser(description="Conway's Game of Life Simulator")
+    parser.add_argument('--file', type=str, help='Load initial state from a file')
+    parser.add_argument('--width', type=int, default=20, help='Width of the grid')
+    parser.add_argument('--height', type=int, default=20, help='Height of the grid')
+    parser.add_argument('--generations', type=int, default=50, help='Number of generations to simulate')
+    parser.add_argument('--delay', type=float, default=0.5, help='Delay between generations')
+
+    args = parser.parse_args()
+
+    if args.file:
+        initial_state = load_state_from_file(args.file)
+    else:
+        initial_state = random_state(args.width, args.height)
+
+    run_game(initial_state, args.generations, args.delay)
+
+if __name__ == '__main__':
+    main()
