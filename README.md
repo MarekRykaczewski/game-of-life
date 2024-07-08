@@ -14,19 +14,6 @@ git clone https://github.com/MarekRykaczewski/game-of-life.git
 cd GameOfLife
 ```
 
-Create a virtual environment (optional but recommended):
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Usage
 
 You can run the Game of Life simulator with different options using command-line arguments.
